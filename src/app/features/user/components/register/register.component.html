@@ -1,0 +1,71 @@
+<div class="cuerpo">
+
+    <div class="container mt-5">
+
+        <div class="card-header bg-info text-white">Registro</div>
+        <div id="div-formulario" class="container card bg-dark text-white">
+
+
+            <form [formGroup]="registerForm" action="">
+                <div class="form-group mt-4">
+                    <label for="userName">Usuario</label>
+                    <input type="text" formControlName="userName" name="userName" class="form-control"
+                        placeholder="Introduce usuario"
+                        [class.is-invalid]="registerForm.get('userName').touched && registerForm.get('userName').invalid">
+                    <div class="alert alert-danger"
+                        [hidden]="registerForm.get('userName').pristine || registerForm.get('userName').valid">
+                        El campo 'userName' no es válido
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="pass">Contraseña</label>
+                    <input type="password" formControlName="pass" name="pass" class="form-control"
+                        placeholder="Introduce contraseña"
+                        [class.is-invalid]="registerForm.get('pass').touched && registerForm.get('pass').invalid">
+                    <div class="alert alert-danger"
+                        [hidden]="registerForm.get('pass').pristine || registerForm.get('pass').valid">
+                        El campo 'pass' no es válido
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="platform">Plataforma</label>
+                    <input type="text" formControlName="platform" name="platform" class="form-control"
+                        placeholder="Introduce plataforma"
+                        [class.is-invalid]="registerForm.get('platform').touched && registerForm.get('platform').invalid">
+                    <div class="alert alert-danger"
+                        [hidden]="registerForm.get('platform').pristine || registerForm.get('platform').valid">
+                        El campo 'platform' no es válido
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="mail">Email</label>
+                    <input type="email" formControlName="mail" name="mail" class="form-control"
+                        placeholder="Introduce correo electrónico"
+                        [class.is-invalid]="registerForm.get('mail').touched && registerForm.get('mail').invalid">
+                    <div class="alert alert-danger"
+                        [hidden]="registerForm.get('mail').pristine || registerForm.get('mail').valid">
+                        El campo 'mail' no es válido
+                    </div>
+                </div>
+
+                <div id="divRegistro" class="divBotones mt-5 text-center">
+                    <button id="botonRegistro" [disabled]="!registerForm.valid" class="btn btn-info"
+                        (click)="createUser()">
+                        Registrarse
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="text-center">
+                <button class="btn btn-info mt-2 mb-3" [routerLink]="'/login'">Iniciar sesión</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

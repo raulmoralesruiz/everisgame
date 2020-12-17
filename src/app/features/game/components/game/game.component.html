@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg navbar-light navColor">
+    <a class="navbar-brand" [routerLink]="['']">
+        <img src="https://i.pinimg.com/originals/07/33/e1/0733e13b44dbed7cab93f4a467ae80a3.jpg" width="30" height="30"
+            alt="" loading="lazy">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                Welcome {{ activeUser }}
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/login']">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/register']">Sign Up</a>
+                </li>
+            </ul>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                [(ngModel)]="busqueda" [ngModelOptions]="{standalone: true}">
+
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit" (click)="searchGame()">Search</button>
+        </form>
+
+    </div>
+</nav>
+
+<div class="mt-5 font-weight-bold titleSize text-center container card-header bg-dark text-white">
+    YourGameBD
+</div>
+
+
+<div *ngIf="!activeUser" class="container mt-5 text-center">
+    <h1>Lo sentimos, debes registrarte para acceder al contenido</h1>
+</div>
+
+
+
+<div *ngIf="activeUser && gamesActive" class="container mt-5">
+
+    <div class="card-columns">
+        <div *ngFor="let g of games" class="card bg-dark text-white">
+            <div class="card-header titleGame font-weight-bold bg-info">{{ g.title }}</div>
+            <div class="card-body cardBg">
+                <img class="card-img-top mb-3" [src]="g.urlImage" alt="Card image">
+                <p class="card-text">
+                    {{ g.description }}
+                </p>
+                <p class="card-text">
+                    {{ g.platform }}
+                </p>
+                <p class="card-text">
+                    {{ g.genre }}
+                </p>
+                <span *ngFor="let i of arr(g.rate).fill(1)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div *ngIf="activeUser && !gamesActive" class="container mt-5">
+
+    <div *ngIf="searchedGame" class="card bg-dark text-center font-weight-bold text-white">
+        <div class="card-header titleGame bg-info">{{ searchedGame.title }}</div>
+        <div class="card-body cardBg">
+            <img class="card-img-top mb-3 searchedCard" [src]="searchedGame.urlImage" alt="Card image">
+            <p class="card-text">
+                {{ searchedGame.description }}
+            </p>
+            <p class="card-text">
+                {{ searchedGame.platform }}
+            </p>
+            <p class="card-text">
+                {{ searchedGame.genre }}
+            </p>
+            <span *ngFor="let i of arr(searchedGame.rate).fill(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+            </span>
+        </div>
+    </div>
+
+</div>
